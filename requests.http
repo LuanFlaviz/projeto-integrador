@@ -1,0 +1,53 @@
+### Extensão "REST Client" do VS Code: clique em "Send Request" acima de cada bloco.
+@base = http://localhost:3000/api
+
+### Saúde (API + banco)
+GET {{base}}/saude
+
+### Unidades
+GET {{base}}/unidades
+
+### Listar estoque
+GET {{base}}/ingredientes
+
+### Adicionar ingrediente
+POST {{base}}/ingredientes
+Content-Type: application/json
+
+{ "nome": "Farinha de trigo", "quantidade": 10, "unidade": "Kg" }
+
+### Repor estoque (troque o 1 pelo id do ingrediente)
+POST {{base}}/ingredientes/1/reposicoes
+Content-Type: application/json
+
+{ "quantidade": 5 }
+
+### Excluir ingrediente
+DELETE {{base}}/ingredientes/1
+
+### Listar produtos (já com receita)
+GET {{base}}/produtos
+
+### Criar produto com receita
+POST {{base}}/produtos
+Content-Type: application/json
+
+{
+  "nome": "Coxinha",
+  "receita": [
+    { "ingrediente": "Farinha de trigo", "quantidade": 500, "unidade": "g" },
+    { "ingrediente": "Leite", "quantidade": 250, "unidade": "ml" }
+  ]
+}
+
+### Excluir produto
+DELETE {{base}}/produtos/1
+
+### Finalizar autorização de produção (debita o estoque)
+POST {{base}}/autorizacoes
+Content-Type: application/json
+
+{
+  "observacao": "Pedido do sábado",
+  "itens": [ { "produtoId": 1, "quantidade": 10 } ]
+}
