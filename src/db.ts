@@ -14,8 +14,9 @@ export const pool = mysql.createPool({
   charset: 'utf8mb4',
   waitForConnections: true,
   connectionLimit: 10,
-  decimalNumbers: true, // DECIMAL chega como número (e não como texto "25.0000")
+   decimalNumbers: true, // DECIMAL chega como número (e não como texto "25.0000")
   dateStrings: true, //    DATETIME chega como texto, sem o JavaScript mexer no fuso
+  ssl: config.banco.ssl ? { rejectUnauthorized: false } : undefined, // o Aiven exige conexão criptografada
 });
 
 // Toda conexão nova usa o mesmo fuso do app, para o NOW() e os DEFAULT CURRENT_TIMESTAMP

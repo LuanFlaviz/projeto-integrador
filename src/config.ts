@@ -37,6 +37,7 @@ export const config = {
     porta: numero('DB_PORT', 3306),
     usuario: process.env.DB_USER || 'root',
     senha: process.env.DB_PASSWORD ?? '',
-    nome: process.env.DB_NAME || 'luana_salgadinhos',
+       nome: process.env.DB_NAME || 'luana_salgadinhos',
+    ssl: process.env.DB_SSL === 'true',
   },
 };
